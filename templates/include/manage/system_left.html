@@ -1,0 +1,116 @@
+
+<div class="x2">
+    <div id="content">
+        <div class="item">
+            <div class="item1">
+                <h4>首页 <span class="icon-angle-down"></span> </h4>
+            </div>
+            <div class="item2">
+                <ul class="item-1">
+                    <li><a href="/app/index/">首页</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item1">
+                <h4>人事管理 <span class="icon-angle-down"></span> </h4>  
+            </div>
+            <div class="item2">
+                <ul class="item-1">
+                    <li><a href="/app/manage-user/">成员查询</a></li>
+                    <li><a href="/app/insert-user">成员添加</a></li>
+                </ul>
+            </div>
+        </div> 
+        <div class="item">
+            <div class="item1">
+                <h4> 设备管理 <span class="icon-angle-down"></span></h4>
+            </div>
+            <div class="item2">
+                <ul class="item-1">
+                    <li><a href="/app/manage-device/">设备查询</a></li>
+                    <li><a href="/app/insert-device/">设备添加</a></li>
+                </ul>
+            </div>
+        </div> 
+        <div class="item">
+            <div class="item1">
+                <h4> 座位管理<span class="icon-angle-down"></span></h4>
+            </div>
+            <div class="item2">
+                <ul class="item-1">
+                    <li><a href="/app/manage-seat/">座位查询</a></li>
+                    <li><a href="/app/insert-seat/">座位添加</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item1">
+                <h4> 坐席使用情况<span class="icon-angle-down"></span></h4>
+            </div>
+            <div class="item2">
+                <ul class="item-1">
+                    <li><a href="/app/manage-occupy-seat/">使用查询</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    #content{
+        height: 800px;
+        background:#0066CC;
+    }
+    .item{
+        background: #0066CC;
+        color:white;
+    }
+    .item h4{
+        width: inherit;
+        padding: 10px 20px;
+    }
+    .item h4 span{
+        float: right;
+    }
+    .item ul{
+        margin: 0;
+        padding: 0;
+    }
+    .item ul li a{
+        display:block;
+        width: inherit;
+        color: white;
+        /*padding-left: 20px;*/
+        padding: 10px 50px;
+    }
+    .item ul li a:hover{
+        background: white;
+        color:blue;
+    }
+    .item1{
+        border-bottom: 1px solid #0099CC;
+    }
+
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var len = $('.item').length;
+        var flag = new Array();
+        for (var i = 0; i < len; i++) {
+            flag[i] = true;
+        }
+        $('.item1').each(function (index) {
+            $(this).click(function () {
+                if (flag[index]) {
+                    $(this).next().css("display", "none");
+                    flag[index] = false;
+
+                } else {
+                    $(this).next().css("display", "block");
+                    flag[index] = true;
+                }
+
+            })
+        })
+    });
+</script>

@@ -1,0 +1,43 @@
+
+<div class="x10">
+    <div class="line margin-big-bottom bg-white">
+        <div class="x1"></div>
+        <div class="x2"><h4 class="text-sub now_address">修改状态</h4></div>
+    </div>
+    <div class="line margin-big-top" style="width: 60%;margin-left: 100px;">
+        <div>
+            {% if flag == 'False' %}
+                <span style="color: red">修改失败</span>
+            {% endif %}
+        </div>
+        <form method="post" action="/app/change-personal-state/" enctype="multipart/form-data">
+            <div class="form-group">
+                <div class="label">
+                    <label for="sdept">用户席位状态</label>
+                    <div class="field">
+                        <select class="input" name="ustate">
+                            {% for item in ustate_list %}
+                                {% if item == user.ustate %}
+                                    <option selected="selected">{{ item }}</option>
+                                {% else %}
+                                    <option>{{ item }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label for="sname">离席原因</label>
+                </div>
+                <div class="form-group">
+                    <textarea  name="reasonforleave" class="form-control" rows="3" style="border: 1px dotted blue; width: 100%;height: 200px">{{ distribute.reasonforleave }}</textarea>
+                </div>
+            </div>
+            <div class="form-button">
+                <button class="button" type="submit">提交修改</button>
+            </div>
+        </form>
+    </div>
+</div>

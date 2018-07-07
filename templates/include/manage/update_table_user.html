@@ -1,0 +1,213 @@
+<div class="x10">
+      <div class="link padding-big-bottom padding-big-top bg-white margin-big-bottom">
+          <div class="x2"></div>
+          <div class="x1">
+              <h4 class="text-sub big_title">修改成员</h4>
+          </div>
+          <div class="x9"></div>
+
+      </div>
+    <div class="line  padding-little-bottom">
+        <div class="x3"></div>
+        <div class="x6 bg-white padding-big-top padding-big-bottom">
+            <form action="/app/update-user/" method="post" class="form-x form-auto" enctype="multipart/form-data">
+                <div class="form-group">
+                    <div class="label">
+                        <label for="Uno">
+                            人员编号</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" class="input" id="Uno" name="uno" size="50" readonly="readonly" value="{{ user.uno }}" placeholder="请输入人员编号"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="Uname">
+                            姓名</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" class="input" id="Uname" name="uname" size="50" placeholder="请输入姓名" value="{{ user.uname }}" data-validate="required:必填" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="pwd">
+                            密码</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" class="input" id="pwd" name="pwd" size="50" placeholder="请输入密码" value="{{ pp.pwd }}" data-validate="required:必填" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="permission">
+                            权限</label>
+                    </div>
+                    <div class="button-group border-main checkbox">
+                        <label class="button active">
+                            <input name="permission" value="1" type="checkbox">人事
+                        </label>
+                        <label class="button">
+                            <input name="permission" value="2" type="checkbox">设备
+                        </label>
+                        <label class="button">
+                            <input name="permission" value="3" type="checkbox">坐席
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="Usex">
+                            性别</label>
+                    </div>
+                    <div class="field">
+                        <div class="button-group radio">
+                            {% if user.sex == '男' %}
+                                <label class="button active">
+                                    <input name="sex" value="男" checked="checked" type="radio"><span class="icon icon-male"></span> 男
+                                </label>
+                                <label class="button">
+                                    <input name="sex" value="女" type="radio"><span class="icon icon-female"></span> 女
+                                </label>
+                            {% else %}
+                                <label class="button active">
+                                    <input name="sex" value="男"  type="radio"><span class="icon icon-male"></span> 男
+                                </label>
+                                <label class="button">
+                                    <input name="sex" value="女" checked="checked" type="radio"><span class="icon icon-female"></span> 女
+                                </label>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="Uid">
+                            身份证号</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" class="input" id="Uid" name="idnum" size="50" placeholder="请输入身份证号" value="{{ user.idnum }}"
+                            data-validate="required:必填,number:必须是数字,length#==18:数值必须是18位"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="Ujob">
+                            职务</label>
+                    </div>
+                    <div class="field">
+                        <select class="input" name="duty">
+                            {% for item in duty_list %}
+                                {% if item == user.duty %}
+                                    <option selected="selected">{{ item }}</option>
+                                {% else %}
+                                    <option>{{ item }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="Udept">
+                            部门</label>
+                    </div>
+                    <div class="field">
+                        <select class="input" name="department">
+                            {% for item in department_list %}
+                                {% if item == user.department %}
+                                    <option selected="selected">{{ item }}</option>
+                                {% else %}
+                                    <option>{{ item }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <div class="label">
+                        <label for="Unow">
+                            岗位</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" class="input" id="Unow" name="post" size="50" value="{{ user.post }}" placeholder="请输入岗位"
+                            data-validate="required:必填"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="Ucphone">
+                            内线电话</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" class="input" id="Ucphone" name="housephone" size="50" value="{{ user.housephone }}" placeholder="请输入内线电话"
+                            data-validate="required:必填,mobile:必须是电话"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="Ucemail">
+                            公司邮箱</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" class="input" id="Ucemail" name="companymail" value="{{ user.companymail }}" size="50" placeholder="请输入公司邮箱"
+                            data-validate="required:必填,email:必须是邮箱格式"/>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <div class="label">
+                        <label for="Uphone">
+                            个人电话</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" class="input" id="Uphone" name="tel" size="50" placeholder="请输入个人电话" value="{{ user.tel }}"
+                            data-validate="required:必填,mobile:必须是电话"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="Uhphone">
+                            住宅电话</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" class="input" id="Uhphone" name="phone" size="50" placeholder="请输入住宅电话" value="{{ user.phone }}"
+                            data-validate="required:必填,mobile:必须是电话"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="Uemail">
+                            个人邮箱</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" class="input" id="Uemail" name="personalmail" size="50" placeholder="请输入邮箱" value="{{ user.personalmail }}"
+                            data-validate="required:必填,email:必须是邮箱格式"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="Uemail">
+                            头像</label>
+                    </div>
+                    <div class="field">
+                        <a class="button input-file" href="javascript:void(0);">+ 浏览文件<input size="100" type="file"
+                                   id="upic" name="upic" data-validate="regexp#.+.(jpg|jpeg|png|gif)$:只能上传jpg|gif|png格式文件"/></a>
+                    </div>
+                </div>
+                <div class="form-button">
+                    <input class="button" type="submit" value="修改人员"/>
+                </div>
+            </form>
+        </div>
+        <div class="x3"></div>
+    </div>
+</div>
+ <style type="text/css">
+     .big_title{
+         border-bottom: 2px solid blue;
+         padding-left: 20px;
+         padding-bottom: 10px;
+         position: relative;
+         top:-10px;
+     }
+ </style>

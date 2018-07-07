@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>我的首页</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/css/pintuer.css">
+        <link rel="stylesheet" href="/static/css/mystyle.css">
+        <script src="/static/js/jquery.js"></script>
+        <script src="/static/js/pintuer.js"></script>
+
+        <script type="text/javascript" src="/static/js/tooltip.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/css/tooltip.css">
+    </head>
+    <body class="bg-gray-light">
+        {% include 'include/user/user_header.html' %}
+        <div class="line">
+             <!--左边导航栏-->
+                 {% include 'include/user/user_left.html' %}
+             <!--左边导航栏结束-->
+             <!--右边内容-->
+            {% if flag_table == 'personal_center' %}
+                 {% include 'include/user/user_self.html' %}
+            {% elif flag_table == 'update_personal_msg' %}
+                {% include 'include/user/update_personal_msg.html' %}
+            {% elif flag_table == 'change_personal_state' %}
+                {% include 'include/user/change_personal_state.html' %}
+            {% elif flag_table == 'index' %}
+                {% include 'include/index_right.html' %}
+            {% endif %}
+             <!--右边内容结束-->
+        </div>
+             <style type="text/css">
+                 .bg-gray-light{
+                     background: #eeeeee;
+                 }
+             </style>
+    </body>
+</html>

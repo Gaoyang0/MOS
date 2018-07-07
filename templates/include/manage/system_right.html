@@ -1,0 +1,42 @@
+<div class="x10">
+    <div class="line bg-white">
+        <div class="x3"></div>
+        <div class="x6">
+                <form action="/app/manage-{{ flag_table }}/" method="get">
+                <div class="input-group  margin-big-bottom  margin-big-top">
+                    <input type="text" class="input border-blue" name="keyword" size="30" placeholder="请输入关键词" />
+                    <input type="text"  name="key" value={{ flag_table }}  style="display:none;" />
+                    <span class="addbtn">
+                        <input type="submit" class="button bg-blue" value="搜索"/>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <div class="x3"></div>
+    </div>
+    <div class="line marign-top-max">
+        <div class="x1"></div>
+        <div class="x10">
+            
+            <!--各种表的显示的地方-->
+            {% if flag_table == 'user' %}
+                {% include 'include/manage/manage_table_user.html' %}
+            {% elif flag_table == 'device' %}
+                {% include 'include/manage/manage_table_device.html' %}
+            {% elif flag_table == 'seat' %}
+                {% include 'include/manage/manage_table_seat.html' %}
+            {% elif flag_table == 'occupy-seat' %}
+                {% include 'include/manage/manage_table_occupy_seat.html' %}
+            {% endif %}
+            <!--各种表的显示的地方结束-->
+            
+        </div>
+        <div class="x1"></div>
+    </div>
+
+</div>
+<style>
+    .marign-top-max{
+        padding-top: 40px;
+    }
+</style>

@@ -1,0 +1,162 @@
+<div class="seatOperate">
+     <button id="redevice" class="button border-dot">坐席设备状态显示</button>
+</div>
+
+<table class="seat table table-bordered" id="seatTable">
+    {% for i in height %}
+        <tr  style="height: 40px;">
+            {% for j in width %}
+                <td data-html="true" class="seat_td" msg="qw" flag="1" fk="2" stype="" style="border: 2px solid #a2add2;width: 60px;" id="{{ forloop.counter }}x{{ forloop.parentloop.counter }}"></td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+
+<table class="seat table table-bordered" style="margin-top: 20px;border: 2px solid #a2add2;">
+    <tr style="height: 30px;">
+        <td class="flag-color" style="background-color: #d2ceb9;width: 60px"></td>
+        <td class="flag-color" style="background-color: #53d208;width: 60px"></td>
+        <td class="flag-color" style="background-color: #d20e13;width: 60px"></td>
+        <td class="flag-color" style="background-color: #d2ceb9;width: 60px;border: 4px solid #444ED2;"></td>
+        <td class="flag-color" style="background-color: #d2ceb9;width: 60px"></td>
+        <td class="flag-color" style="background-color: #d2ceb9;width: 60px;border: 4px solid #A5D226"></td>
+        <td class="flag-color" style="background-color: #abd2ce;width: 60px"></td>
+        <td class="flag-color" style="background-color: #D29032;width: 60px"></td>
+        <td class="flag-color" style="background-color: #d24a2a;width: 60px"></td>
+        <td class="flag-color" style="background-color: #A5D226;width: 60px"></td>
+
+    </tr>
+    <tr style="height: 30px;">
+        <td class="flag-tip" style="width: 60px">空席</td>
+        <td class="flag-tip" style="width: 60px">在席</td>
+        <td class="flag-tip" style="width: 60px">损坏</td>
+        <td class="flag-tip" style="width: 60px">高级坐席</td>
+        <td class="flag-tip" style="width: 60px">普通坐席</td>
+        <td class="flag-tip" style="width: 60px">外访坐席</td>
+        <td class="flag-tip" style="width: 60px">设备</td>
+        <td class="flag-tip" style="width: 60px">洗手间</td>
+        <td class="flag-tip" style="width: 60px">障碍物</td>
+        <td class="flag-tip" style="width: 60px">休息区</td>
+    </tr>
+
+</table>
+<style type="text/css">
+    td{
+       background: white;
+    }
+    .seatOperate{
+        background: white;
+        width: 100%;
+        margin-bottom: 30px;
+        padding: 1% 35%;
+    }
+</style>
+    <script type="text/javascript">
+    //用颜色来显示所有状态
+    function setColor() {
+
+        $(".seat tr").find('td').each(function () {
+            if ($(this).attr('flag') == '0') {
+                $(this).css("background", "white");         // 空地
+            }
+            if ($(this).attr('flag') == '2') {
+                $(this).css("background", "#53d208");       // 在席
+            }
+            if ($(this).attr('flag') == '1') {
+                $(this).css("background", "#d2ceb9");       // 空闲
+            }
+            if ($(this).attr('flag') == '3') {
+                $(this).css("background", "#d20e13");        // 损坏
+            }
+            if($(this).attr('fk') == '1'){                    // 高级座席
+                $(this).css("border", "4px solid #444ED2");
+            }
+            if($(this).attr('fk') == '3'){                    // 外访座席
+                $(this).css("border", "4px solid #A5D226");
+            }
+            if ($(this).attr('flag') == '4') {
+                $(this).css("background", "#abd2ce");           // 设备
+            }
+            if ($(this).attr('flag') == '5') {
+                $(this).css("background", "#A5D226");         // 休息区
+            }
+            if ($(this).attr('flag') == '6') {
+                $(this).css("background", "#D29032");       // 洗手间
+            }
+            if ($(this).attr('flag') == '7') {
+                $(this).css("background", "#d24a2a");       // 障碍物
+            }
+        })
+
+    }
+    //接收后台传来的座位信息
+    $("#redevice").click(function () {
+        $.ajax({
+            type: 'get',
+            url: "/app/ajax-seat-msg/",
+            data: {},
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                var matrix = data['matrix'];
+                var msg = data['msg'];
+
+               //获取返回的数据填充td
+                for(var i= 0;i<matrix.length;i++){
+				    for(var j = 0; j<matrix[i].length; j++ ){
+				        var strId = (1+j)+'x'+(i+1);
+                        setAttr(matrix[i][j], strId);
+                    }
+			    }
+			    setOther();
+                setColor();
+                setMsg(msg);
+                showMsg();
+            },
+            error: function () {}
+        });
+    })
+    function setMsg(msg) {
+        for(var key in msg){
+            $('#'+key).attr('msg', msg[key]['sno']);
+            $('#'+key).attr('stype', msg[key]['stype']);
+            $('#'+key).html(msg[key]['uname']);
+        }
+    }
+    function setAttr(val, strId) {
+        $("#"+strId).attr('fk', val.toString()[1]);
+        $("#"+strId).attr('flag', val.toString()[0]);
+    }
+    function setOther() {
+        // 洗手间
+        for(var i= 0;i<3;i++){
+            for(var j = 0; j<3; j++ ){
+                var strId = (17+j)+'x'+(i+1);
+                $("#"+strId).attr('flag', 6);
+            }
+        }
+        // 休息区
+        for(var i= 0;i<1;i++){
+            for(var j = 0; j<4; j++ ){
+                var strId = (9+j)+'x'+(i+12);
+                $("#"+strId).attr('flag', 5);
+            }
+        }
+        // 障碍物
+        for(var i= 0;i<1;i++){
+            for(var j = 0; j<6; j++ ){
+                var strId = (8+j)+'x'+(i+16);
+                $("#"+strId).attr('flag', 7);
+            }
+        }
+    }
+    function showMsg(){
+        $(".seat tr").find('td').each(function () {
+            $(this).tooltip({text: '坐席编号: '+$(this).attr('msg')+'<br/>'+'坐席类型: '+$(this).attr('stype'),fontSize: '15px',
+                theme: 'light',
+                fontFamily: "'Open Sans', 'Roboto-Regular', Arial",
+                delay: 400})
+        });
+    }
+</script>
+

@@ -1,0 +1,89 @@
+<div class="x10">
+      <div class="link padding-big-bottom padding-big-top bg-white margin-big-bottom">
+          <div class="x2"></div>
+          <div class="x1">
+              <h4 class="text-sub big_title">修改坐席</h4>
+          </div>
+          <div class="x9"></div>
+
+      </div>
+    <div class="line  padding-little-bottom">
+        <div class="x3"></div>
+        <div class="x6 bg-white padding-big-top padding-big-bottom">
+            <form action="/app/update-seat/" method="post" class="form-x form-auto" enctype="multipart/form-data">
+                <div class="form-group">
+                    <div class="label">
+                        <label for="Uno">
+                            坐席编号</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" class="input" id="sno" name="sno" size="50" placeholder="请输入坐席编号" readonly="readonly" value="{{ seat.sno }}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="Uname">
+                            坐席位置</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" class="input" id="sposition" name="sposition" size="50" placeholder="请输入坐席位置" data-validate="required:必填" value="{{ seat.sposition }}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="Uname">
+                            ip</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" class="input" id="ip" name="ip" size="50" value="{{ seat.ip }}" placeholder="请输入坐席ip" data-validate="required:必填,ip:必须是ip格式" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label>坐席状态</label></div>
+                    <div class="field">
+                        <select class="input" name="sstate">
+                            {% for item in state_list %}
+                                {% if item == seat.sstate %}
+                                    <option selected="selected">{{ item }}</option>
+                                {% else %}
+                                    <option>{{ item }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label">
+                        <label for="Ujob">
+                            坐席类型</label>
+                    </div>
+                    <div class="field">
+                        <select class="input" name="stype">
+                            {% for item in seat_type %}
+                                {% if item == seat.stype %}
+                                    <option selected="selected">{{ item }}</option>
+                                {% else %}
+                                    <option>{{ item }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-button">
+                    <input class="button" type="submit" value="修改坐席"/>
+                </div>
+            </form>
+        </div>
+        <div class="x3"></div>
+    </div>
+</div>
+ <style type="text/css">
+     .big_title{
+         border-bottom: 2px solid blue;
+         padding-left: 20px;
+         padding-bottom: 10px;
+         position: relative;
+         top:-10px;
+     }
+ </style>

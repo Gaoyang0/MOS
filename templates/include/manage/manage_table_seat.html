@@ -1,0 +1,33 @@
+<table class="table table-hover bg-white">
+    <tr>
+        {% for item in table_head %}
+            <th style="text-align: center">{{ item }}</th>
+        {% endfor %}
+    </tr>
+
+    {% for item in table_body %}
+        <tr style="text-align: center">
+            <td>{{ item.sno }}</td>
+            <td>{{ item.sposition }}</td>
+            <td>{{ item.ip }}</td>
+            <td>{{ item.sstate }}</td>
+            <td>{{ item.stype }}</td>
+            <td><a href="/app/delete-seat/?sno={{ item.sno }}" class="button button-small border-red del">
+                    <span class="icon-trash-o"></span>删除</a>
+                <a href="/app/update-seat/?sno={{ item.sno }}" class="button button-small border-blue">
+                    <span class="icon-edit"></span>修改</a></td>
+        </tr>
+    {% endfor %}
+</table>
+<div style="text-align: center;margin-top: 20px;">
+    {{ page_str }}
+</div>
+<script>
+    $('.del').click(function () {
+        if(confirm("确定要删除吗?")){
+            return true;
+        }else {
+            return false;
+        }
+    });
+</script>

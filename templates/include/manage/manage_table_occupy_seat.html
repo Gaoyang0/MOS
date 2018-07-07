@@ -1,0 +1,21 @@
+<table class="table table-hover bg-white">
+    <tr>
+        {% for item in table_head %}
+            <th style="text-align: center">{{ item }}</th>
+        {% endfor %}
+
+    </tr>
+
+    {% for item in table_body %}
+        <tr style="text-align: center">
+            <td>{{ item.s_id }}</td>
+            <td>{{ item.u_id }}</td>
+            <td>{{ item.start_time }}</td>
+            <td>{{ item.end_time }}</td>
+            <td>{{ item.reasonforleave }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<div style="text-align: center;margin-top: 20px;">
+    {{ page_str }}
+</div>

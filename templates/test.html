@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/tooltip.css">
+</head>
+<body>
+
+<span id="demo-1" >莫问前路几何</span><br>
+<span style="height: 111px;">adads</span>
+	<script src="/static/js/jquery.js"></script>
+	<script src="/static/js/tooltip.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		  $('#demo-1').tooltip({text: '这是一个Tooltip！',fontSize: '50px',
+		    theme: 'light',
+		    fontFamily: "'Open Sans', 'Roboto-Regular', Arial",
+		    delay: 400});
+		});
+	</script>
+</body>
+</html>

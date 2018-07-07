@@ -1,0 +1,22 @@
+<table class="table table-hover bg-white">
+    <tr>
+        {% for item in table_head %}
+            <th style="text-align: center">{{ item }}</th>
+        {% endfor %}
+    </tr>
+
+    {% for item in table_body %}
+        <tr style="text-align: center">
+            <td>{{ item.dno }}</td>
+            <td>{{ item.dname }}</td>
+            <td>{{ item.dposition }}</td>
+            <td>{{ item.dstate }}</td>
+            <td>{{ item.dtype }}</td>
+            <td>{{ item.is_order }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<div style="text-align: center;margin-top: 20px;">
+    {{ page_str }}
+</div>
+

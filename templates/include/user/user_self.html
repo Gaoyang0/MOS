@@ -1,0 +1,158 @@
+
+<div class="x10">
+    <div class="line margin-big-bottom bg-white">
+        <div class="x1"></div>
+        <div class="x2"><h4 class="text-sub now_address">个人信息</h4></div>
+    </div>
+    <div class="line margin-big-top">
+        <div class="x1"></div>
+        <div class="x2">
+            <img src="{{ user.upic }}" width="128" height="128" class="img-border radius-circle" />
+        </div>
+        <!--个人信息显示，不可更改-->
+        <div class="x7 self_info bg-white">
+            <div class="fr margin-big-right margin-big-top"></div>
+            <form>
+                <fieldset>
+
+                    <table id="testtable">
+                        <tr>
+                            <td><label>人员编号：</label></td>
+                            <td><input type="text" value="{{ user.uno }}" /></td>
+                            <td><label>姓名：</label></td>
+                            <td><input type="text" value="{{ user.uname }}" /></td>
+                        </tr>
+
+                        <tr>
+                            <td><label>性别：</label></td>
+                            <td><input type="text" value="{{ user.sex }}" /></td>
+
+                            <td><label>身份证号：</label></td>
+                            <td><input type="text" value="{{ user.idnum }}" /></td>
+                        </tr>
+
+                        <tr>
+                            <td><label>职务：</label></td>
+                            <td><input type="text" value="{{ user.duty }}" /></td>
+
+                            <td><label>部门：</label></td>
+                            <td><input type="text" value="{{ user.department }}" /></td>
+                        </tr>
+
+                        <tr>
+                            <td><label>岗位：</label></td>
+                            <td><input type="text" value="{{ user.post }}" /></td>
+
+                            <td><label>内线电话：</label></td>
+                            <td><input type="text" value="{{ user.housephone }}" /></td>
+                        </tr>
+
+                        <tr>
+                            <td><label>公司邮箱：</label></td>
+                            <td><input type="text" value="{{ user.companymail }}" /></td>
+
+                            <td><label>个人邮箱：</label></td>
+                            <td><input type="text" value="{{ user.personalmail }}" /></td>
+                        </tr>
+
+                        <tr>
+                            <td><label>个人电话：</label></td>
+                            <td><input type="text" value="{{ user.tel }}" /></td>
+
+                            <td><label>住宅电话：</label></td>
+                            <td><input type="text" value="{{ user.phone }}" /></td>
+                        </tr>
+                        <tr>
+                            <td><label>在席状态：</label></td>
+                            <td><input type="text" value="{{ user.ustate }}" /></td>
+                            <td><label>离席原因：</label></td>
+                            <td><input type="text" value="{{ user.reasonforleave }}" /></td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </form>
+        </div>
+        <div class="x2"> </div>
+    </div>
+</div>
+<style type="text/css">
+    /*表格式个人信息*/
+    .self_info table tr td{
+        padding: 20px 20px;
+    }
+    .self_info{
+        border: 1px solid #f6f6f6;
+        border-radius:10px;
+        box-shadow: 0px 3px 3px  rgba(225,225,225,0.8);
+        margin-top: 50px;
+    }
+    .self_info table{
+        margin: 0 auto;
+    }
+    .self_info span{
+        cursor: pointer;
+    }
+    .self_info span:active{
+        color: red;
+    }
+    /*表格编辑框   当点击编辑按钮的时候才能编辑*/
+    .self_info table input{
+        border: none;
+    }
+    .self_info table input[type="text"]{
+        color: transparent;
+        text-shadow: 0 0 0 #000;
+    }
+    .fr{
+        float: right;
+    }
+    fieldset{
+        border: 0 none;
+        border-top: 3px solid #f6f6f6;
+        margin-top:20px;
+    }
+    .modify{
+        margin: 0 auto;
+    }
+    .modify tr td{
+        padding: 10px 20px;
+    }
+    .modify tr td input{
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: 1px solid lightgray;
+    }
+    .modify tr td input:hover{
+        border: 1px solid #0099CC  ;
+    }
+</style>
+
+
+<script type="text/javascript">
+    $("#submitBtn").click(function () {
+        var Uno = {{ user.uno }};
+        var Uname = $("#Uname").val();
+        var Uid = $("#Uid").val();
+        var Ucphone = $("#Ucphone").val();
+        var Ucemail = $("#Ucemail").val();
+        var Uip = $("#Uip").val();
+        var Uphone = $("#Uphone").val();
+        var Uhphone = $("#Uhphone").val();
+        var Uemail = $("#Uemail").val();
+        alert(Uno);
+        $.ajax({
+            type: 'post',
+            url: "",
+            data: {
+            },
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                //获取返回的数据填充td
+            },
+            error: function () {}
+        });
+    });
+</script>

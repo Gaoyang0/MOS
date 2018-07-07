@@ -1,0 +1,37 @@
+<table class="table table-hover bg-white">
+    <tr>
+        {% for item in table_head %}
+            <th style="text-align: center">{{ item }}</th>
+        {% endfor %}
+
+    </tr>
+
+    {% for item in table_body %}
+        <tr style="text-align: center">
+            <td>{{ item.uno }}</td>
+            <td>{{ item.uname }}</td>
+            <td>{{ item.duty }}</td>
+            <td>{{ item.department }}</td>
+            <td>{{ item.housephone }}</td>
+            <td><a href="/app/delete-user/?uno={{ item.uno }}"  class="button button-small border-red del">
+                    <span class="icon-trash-o"></span>删除</a>
+                <a href="/app/update-user/?uno={{ item.uno }}" class="button button-small border-blue">
+                    <span class="icon-edit"></span>修改</a>
+                <a href="/app/detail-info/?flag=manage&uno={{ item.uno }}" class="button button-small border-green">
+                    <span class="icon-plus-square"></span>详情</a></td>
+        </tr>
+    {% endfor %}
+</table>
+<div style="text-align: center;margin-top: 20px;">
+    {{ page_str }}
+</div>
+<script>
+    $('.del').click(function () {
+        if(confirm("确定要删除吗?")){
+            return true;
+        }else {
+            return false;
+        }
+    });
+</script>
+

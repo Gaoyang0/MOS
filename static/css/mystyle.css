@@ -1,0 +1,15 @@
+.head-height {
+    height: 40px;
+}
+.head-content-center{
+    line-height: 40px;
+}
+.table-text-center{
+    text-align: center;
+}
+.himage{
+    height: 40px;
+    width: 40px;
+    margin-top: 4px;
+    border-radius: 50%;
+}
